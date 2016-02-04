@@ -16,7 +16,7 @@ def accuracy(prediction, labels):
 
 
 data = pandas.read_csv('wine.data.txt', header=None)
-labels = data[0]
+lables = data[0]
 
 features = data[data.columns[1:]]
 
@@ -27,8 +27,8 @@ for k in xrange(1, 50):
     knn = KNeighborsClassifier(n_neighbors=k)
     accs = []
     for train_index, test_index in kf:
-        knn.fit(features.iloc[train_index], labels.iloc[train_index])
-        accs.append(accuracy(knn.predict(features.iloc[test_index]), labels.iloc[test_index]))
+        knn.fit(features.iloc[train_index], lables.iloc[train_index])
+        accs.append(accuracy(knn.predict(features.iloc[test_index]), lables.iloc[test_index]))
     accs_k.append(pandas.Series.mean(pandas.Series(accs)))
 
 print(numpy.argmax(accs_k))
@@ -41,8 +41,8 @@ for k in xrange(1, 50):
     knn = KNeighborsClassifier(n_neighbors=k)
     accs = []
     for train_index, test_index in kf:
-        knn.fit(features_scaled[train_index], labels.iloc[train_index])
-        accs.append(accuracy(knn.predict(features_scaled[test_index]), labels.iloc[test_index]))
+        knn.fit(features_scaled[train_index], lables.iloc[train_index])
+        accs.append(accuracy(knn.predict(features_scaled[test_index]), lables.iloc[test_index]))
     accs_k_scaled.append(pandas.Series.mean(pandas.Series(accs)))
 
 print(numpy.argmax(accs_k_scaled))
